@@ -53,7 +53,6 @@
 	}
 
 	if(!blob.stream) {
-		console.log(fullStreamSupport)
 		blob.stream =
 
 		fullStreamSupport ? function stream() {
