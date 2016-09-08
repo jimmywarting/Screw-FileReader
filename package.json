@@ -1,0 +1,19 @@
+{
+  "name": "screw-filereader",
+  "version": "1.0.0",
+  "description": "For those lazzy bastard who don't like the FileReader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmywarting/Screw-FileReader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimmywarting/Screw-FileReader/issues"
+  },
+  "homepage": "https://github.com/jimmywarting/Screw-FileReader#readme"
+}
