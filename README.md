@@ -1,6 +1,8 @@
 # Screw-FileReader
 For those lazzy bastard who don't like the FileReader :)
 
+npm install screw-filereader
+
 A promisified Blob reader was [proposed][proposed].
 But not as a external API like FileReader... Nooo - this is prototyped to blob directly!
 
@@ -9,6 +11,9 @@ This makes it easier to read stuff from Blob's and File's
 Here is an example
 
 ```javascript
+// require('screw-filereader')
+// import screw-filereader
+
 arrayBuffer = await blob.arrayBuffer() // awaits a promise
 text = await blob.text() // awaits a promise
 json = await blob.json() // awaits a promise
