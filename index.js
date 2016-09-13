@@ -100,6 +100,7 @@
 					var chunk = blob.slice(position, position + 524288)
 
 					return chunk.arrayBuffer().then(function(buffer) {
+						position += buffer.byteLength
 						let uint8array = new Uint8Array(buffer)
 						controller.enqueue(uint8array)
 
