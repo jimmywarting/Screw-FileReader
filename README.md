@@ -19,8 +19,8 @@ Here is an example
 arrayBuffer = await blob.arrayBuffer() // awaits a promise
 text = await blob.text() // awaits a promise
 json = await blob.json() // awaits a promise
-url = blob.url() // returns a blob url (same as URL.createObjectURL(blob))
 stream = blob.stream() // returns a web ReadableStream
+url = blob.url() // returns a blob url (same as URL.createObjectURL(blob))
 ```
 
 if streams are enhanced with [web-streams-polyfill][polyfill] then you get all
