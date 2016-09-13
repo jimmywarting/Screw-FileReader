@@ -91,9 +91,6 @@
 
 			return new ReadableStream({
 				pull: function(controller) {
-					if(currentChunk == chunks)
-						return controller.close()
-
 					var chunk = blob.slice(position, position + 524288)
 
 					return chunk.arrayBuffer().then(function(buffer) {
