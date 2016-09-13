@@ -45,6 +45,12 @@
 			})
 		}
 	}
+	
+	if(!blob.url) {
+		blob.url = function url() {
+			return URL.createObjectURL(this)
+		}
+	}
 
 	if(!blob.json) {
 		blob.json = function json() {
