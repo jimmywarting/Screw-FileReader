@@ -1,6 +1,8 @@
 # Screw-FileReader
 For those lazzy bastard who don't like the FileReader :)
 
+[![npm version][npm-image]][npm-url]
+
 ```
 npm install screw-filereader
 ```
@@ -28,3 +30,5 @@ the benefits of pipes as well :v:
 
   [polyfill]: https://github.com/creatorrr/web-streams-polyfill
   [proposed]: https://github.com/w3c/FileAPI/issues/40
+  [npm-image]: https://img.shields.io/npm/v/screw-filereader.svg?style=flat-square
+  [npm-url]: https://www.npmjs.com/package/screw-filereader
