@@ -28,7 +28,7 @@ stream = blob.stream() // returns a web ReadableStream
 // - Binaries just don't work well with strings face it.
 //   Send the blob with ajax instead or use ArrayBuffer if you want to work with the data
 //
-// Until someone gives me a good reason why I should not add them
+// Until someone gives me a good reason why I should add them
 
 
 // Just bonuses
