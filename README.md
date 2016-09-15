@@ -36,8 +36,9 @@ json = await blob.json() // awaits a promise
 url = blob.url() // returns a blob url (same as URL.createObjectURL(blob))
 ```
 
-if streams are enhanced with [web-streams-polyfill][polyfill] then you get all
-the benefits of pipes as well :v:
+If streams are enhanced with [web-streams-polyfill][polyfill] then you get all
+the benefits of pipes as well :v:<br>
+Otherwise only a ReadableStream without pipe will be returned (but only in Blink)
 
   [polyfill]: https://github.com/creatorrr/web-streams-polyfill
   [proposed]: https://github.com/w3c/FileAPI/issues/40
