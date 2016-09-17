@@ -35,6 +35,7 @@
 		}
 	}
 
+readAsDataURL
 	if(!blob.text) {
 		blob.text = function text() {
 			var fr = new FileReader()
