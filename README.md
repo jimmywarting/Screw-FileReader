@@ -20,11 +20,10 @@ Here is an example
 
 arrayBuffer = await blob.arrayBuffer() // awaits a promise
 text = await blob.text() // awaits a promise
+dataUrl = await blob.dataUrl() // awaits a promise
 stream = blob.stream() // returns a web ReadableStream
 
-// BinaryString and DataURL has been avoided 
-// - DataURL is just ~3x bigger and there are better ways to handle them, like ObjectURL
-//   Worse for memory, size, decoding, url bar & speed
+// BinaryString has been avoided 
 // - Binaries just don't work well with strings face it.
 //   Send the blob with ajax instead or use ArrayBuffer if you want to work with the data
 //
@@ -32,8 +31,13 @@ stream = blob.stream() // returns a web ReadableStream
 
 
 // Just bonuses
+// ------------
+
 json = await blob.json() // awaits a promise
-url = blob.url() // returns a blob url (same as URL.createObjectURL(blob))
+
+// returns a blob url (same as [webkit]URL.createObjectURL(blob))
+// can also return null if it's not possible like on chrome for iOS...
+url = blob.url() || await blob.dataUrl()
 ```
 
 If streams are enhanced with [web-streams-polyfill][polyfill] then you get all
