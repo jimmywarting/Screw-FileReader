@@ -8,7 +8,8 @@
 	var fullStreamSupport = false
 	var basicStreamSupport = false
 	var fetchTransform = false
-
+	var url = window.URL || window.webkitURL
+	
 	try {
 		new ReadableStream({})
 		basicStreamSupport = true
@@ -35,7 +36,7 @@
 		}
 	}
 
-readAsDataURL
+
 	if(!blob.text) {
 		blob.text = function text() {
 			var fr = new FileReader()
@@ -47,9 +48,20 @@ readAsDataURL
 		}
 	}
 	
+	if(!blob.dataURL) {
+		blob.dataURL = function dataURL() {
+			var fr = new FileReader()
+			fr.readAsDataURL(this)
+			return new Promise(function(resolve, reject) {
+				fr.onload = function(evt) { resolve(evt.target.result) }
+				fr.onerror = function(evt) { reject(evt.target.error) }
+			})
+		}
+	}
+	
 	if(!blob.url) {
 		blob.url = function url() {
-			return URL.createObjectURL(this)
+			return url ? null : url.createObjectURL(this)
 		}
 	}
 
