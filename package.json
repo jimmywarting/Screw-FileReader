@@ -10,6 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/jimmywarting/Screw-FileReader.git"
   },
+  "keywords": [
+    "Promise",
+    "FileReader",
+    "FileAPI",
+    "File API",
+    "File"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
