@@ -8,8 +8,28 @@
 	var fullStreamSupport = false
 	var basicStreamSupport = false
 	var fetchTransform = false
-	var url = window.URL || window.webkitURL
-	
+	var URL = window.URL || window.webkitURL
+
+	function promisify(obj) {
+		return new Promise(function(resolve, reject) {
+			obj.onload =
+			obj.onerror = function(evt) {
+				obj.onload =
+				obj.onerror = null
+
+				evt.type === 'load'
+					? resolve(obj.result || obj)
+					: reject(obj.error)
+			}
+		})
+	}
+
+	function toImage(url) {
+		var img = new Image
+		img.src = url
+		return promisify(img)
+	}
+
 	try {
 		new ReadableStream({})
 		basicStreamSupport = true
@@ -27,47 +47,43 @@
 
 	if(!blob.arrayBuffer) {
 		blob.arrayBuffer = function arrayBuffer() {
-			var fr = new FileReader()
+			var fr = new FileReader
 			fr.readAsArrayBuffer(this)
-			return new Promise(function(resolve, reject) {
-				fr.onload = function(evt) { resolve(evt.target.result) }
-				fr.onerror = function(evt) { reject(evt.target.error) }
-			})
+			return promisify(fr)
 		}
 	}
-
 
 	if(!blob.text) {
 		blob.text = function text() {
-			var fr = new FileReader()
+			var fr = new FileReader
 			fr.readAsText(this)
-			return new Promise(function(resolve, reject) {
-				fr.onload = function(evt) { resolve(evt.target.result) }
-				fr.onerror = function(evt) { reject(evt.target.error) }
-			})
+			return promisify(fr)
 		}
 	}
-	
+
 	if(!blob.dataURL) {
 		blob.dataURL = function dataURL() {
-			var fr = new FileReader()
+			var fr = new FileReader
 			fr.readAsDataURL(this)
-			return new Promise(function(resolve, reject) {
-				fr.onload = function(evt) { resolve(evt.target.result) }
-				fr.onerror = function(evt) { reject(evt.target.error) }
-			})
+			return promisify(fr)
 		}
 	}
-	
+
 	if(!blob.url) {
 		blob.url = function url() {
-			return url ? null : url.createObjectURL(this)
+			return URL ? URL.createObjectURL(this) : null
 		}
 	}
 
 	if(!blob.json) {
 		blob.json = function json() {
 			return this.text().then(JSON.parse)
+		}
+	}
+
+	if(!blob.image) {
+		blob.image = function image() {
+			return Promise.resolve(this.url() || this.dataURL()).then(toImage)
 		}
 	}
 
@@ -82,11 +98,11 @@
 				type: 'bytes',
 				autoAllocateChunkSize: 524288,
 
-				pull: function(controller) {
+				pull: function (controller) {
 					var v = controller.byobRequest.view
 					var chunk = blob.slice(position, position + v.byteLength)
 					return chunk.arrayBuffer()
-					.then(function(buffer) {
+					.then(function (buffer) {
 						let uint8array = new Uint8Array(buffer)
 						let bytesRead = uint8array.byteLength
 
@@ -96,8 +112,6 @@
 
 						if(position >= blob.size)
 							controller.close()
-
-						resolve()
 					})
 				}
 			})
@@ -109,10 +123,10 @@
 			var blob = this
 
 			return new ReadableStream({
-				pull: function(controller) {
+				pull: function (controller) {
 					var chunk = blob.slice(position, position + 524288)
 
-					return chunk.arrayBuffer().then(function(buffer) {
+					return chunk.arrayBuffer().then(function (buffer) {
 						position += buffer.byteLength
 						let uint8array = new Uint8Array(buffer)
 						controller.enqueue(uint8array)

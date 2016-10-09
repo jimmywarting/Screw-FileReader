@@ -23,7 +23,7 @@ text = await blob.text() // awaits a promise
 dataUrl = await blob.dataUrl() // awaits a promise
 stream = blob.stream() // returns a web ReadableStream
 
-// BinaryString has been avoided 
+// BinaryString has been avoided
 // - Binaries just don't work well with strings face it.
 //   Send the blob with ajax instead or use ArrayBuffer if you want to work with the data
 //
@@ -32,8 +32,8 @@ stream = blob.stream() // returns a web ReadableStream
 
 // Just bonuses
 // ------------
-
-json = await blob.json() // awaits a promise
+json = await blob.json() // awaits a promise (rejects if fail to parse)
+img = await blob.image() // awaits a new Image object (rejects if fail to load)
 
 // returns a blob url (same as [webkit]URL.createObjectURL(blob))
 // can also return null if it's not possible like on chrome for iOS...
