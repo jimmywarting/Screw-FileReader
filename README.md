@@ -37,7 +37,7 @@ img = await blob.image() // awaits a new Image object (rejects if fail to load)
 
 // returns a blob url (same as [webkit]URL.createObjectURL(blob))
 // can also return null if it's not possible like on chrome for iOS...
-url = blob.url() || await blob.dataUrl()
+url = blob.url() || await blob.dataUrl() // this is what blob.image() dose behind the scene...
 ```
 
 If streams are enhanced with [web-streams-polyfill][polyfill] then you get all
