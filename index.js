@@ -82,8 +82,13 @@
 	}
 
 	if(!blob.image) {
-		blob.image = function image() {
-			return Promise.resolve(this.url() || this.dataURL()).then(toImage)
+		blob.image = function image(preventRevoke) {
+			return Promise.resolve(this.url() || this.dataURL())
+      .then(toImage)
+      .then(function(img) {
+        !preventRevoke && URL.revokeObjectURL(img.src)
+        return img
+      })
 		}
 	}
 
