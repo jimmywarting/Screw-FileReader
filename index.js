@@ -84,11 +84,11 @@
 	if(!blob.image) {
 		blob.image = function image(preventRevoke) {
 			return Promise.resolve(this.url() || this.dataURL())
-      .then(toImage)
-      .then(function(img) {
-        !preventRevoke && URL.revokeObjectURL(img.src)
-        return img
-      })
+			.then(toImage)
+			.then(function(img) {
+				!preventRevoke && URL.revokeObjectURL(img.src)
+				return img
+			})
 		}
 	}
 
