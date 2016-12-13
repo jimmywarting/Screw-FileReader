@@ -33,7 +33,7 @@ stream = blob.stream() // returns a web ReadableStream
 // Just bonuses
 // ------------
 json = await blob.json() // awaits a promise (rejects if fail to parse)
-img = await blob.image() // awaits a new Image object (rejects if fail to load)
+img = await blob.image([preventRevoke=false]) // awaits a new Image object (rejects if fail to load)
 
 // returns a blob url (same as [webkit]URL.createObjectURL(blob))
 // can also return null if it's not possible like on chrome for iOS...
