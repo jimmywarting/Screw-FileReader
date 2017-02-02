@@ -40,6 +40,8 @@ img = await blob.image([preventRevoke=false]) // awaits a new Image object (reje
 url = blob.url() || await blob.dataUrl() // this is what blob.image() dose behind the scene...
 ```
 
+`blob.image()` will read the Exif rotation in jpeg images and rotate it accordingly 
+
 If streams are enhanced with [web-streams-polyfill][polyfill] then you get all
 the benefits of pipes as well :v:<br>
 Otherwise only a ReadableStream without pipe will be returned (but only in Blink)
