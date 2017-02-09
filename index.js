@@ -112,7 +112,7 @@
       .then(toImage)
       .then(function(img) {
         // return img unless it needs rotation
-        return angle < 2 && angle > 8 ? img :
+        return angle < 2 ? img :
           // rotate the image
           rotate(img, angle).then(function (blob) {
             return blob.url() || blob.dataURL()
