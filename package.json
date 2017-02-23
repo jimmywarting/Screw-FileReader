@@ -1,6 +1,6 @@
 {
   "name": "screw-filereader",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "For those lazzy bastard who don't like the FileReader",
   "main": "index.js",
   "scripts": {
