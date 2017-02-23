@@ -223,7 +223,7 @@
 
           return chunk.arrayBuffer().then(function (buffer) {
             position += buffer.byteLength
-            let uint8array = new Uint8Array(buffer)
+            var uint8array = new Uint8Array(buffer)
             controller.enqueue(uint8array)
 
             if(position == blob.size)
