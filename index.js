@@ -198,8 +198,8 @@
           var chunk = blob.slice(position, position + v.byteLength)
           return chunk.arrayBuffer()
           .then(function (buffer) {
-            let uint8array = new Uint8Array(buffer)
-            let bytesRead = uint8array.byteLength
+            var uint8array = new Uint8Array(buffer)
+            var bytesRead = uint8array.byteLength
 
             position += bytesRead
             v.set(uint8array)
